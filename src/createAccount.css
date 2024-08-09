@@ -1,0 +1,129 @@
+.relate{
+    position: relative;
+    
+}
+.video{
+    width: 100%;
+    height:100%;
+    background-size: cover;
+    position: relative;
+}
+.all-item{
+    margin-top: 50px;
+    margin-left: -10px;
+}
+.main-box{
+    border: 1px solid black;
+    height: 480px;
+    width: 450px;
+    position: absolute;
+    margin: -660px 420px;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    border:2px solid pink;
+}
+.input-1{
+    position: relative;
+   
+}
+.main-box .input-1 input{
+    height: 30px;
+    width: 300px;
+    margin: 50px 100px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+.main-box .input-1 label{
+    position: absolute;
+    padding: 52px 40px;
+    opacity: 0.6;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.input-2{
+    position: relative;
+}
+.main-box .input-2 input{
+    height: 30px;
+    width: 300px;
+    margin: -20px 100px;
+    position: absolute;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+.main-box .input-2 label{
+    position: absolute;
+    margin: -15px 40px;
+    opacity: 0.6;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.input-3{
+    position: relative;
+}
+.main-box .input-3 input{
+    height: 30px;
+    width: 300px;
+    margin: 40px 100px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+.main-box .input-3 label{
+    position: absolute;
+    position: absolute;
+    padding: 45px 15px;
+    opacity: 0.6;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} 
+.main-box .input-4 input{
+    height: 30px;
+    width: 300px;
+    margin: 50px 100px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+}
+.main-box .input-4 label{
+    position: absolute;
+    padding: 52px 40px;
+    opacity: 0.6;
+    font-size: 22px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.main-box  .slt{
+    position: absolute;
+    margin: 10px 100px; 
+}
+.main-box  .slt select{
+    height: 35px;
+    width: 150px;
+    background-color: black;
+    opacity: 0.6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+.main-box button{
+    height: 35px;
+    width: 150px;
+    
+    margin: 10px 257px;
+    position: absolute;
+    background-color: black;
+    opacity: 0.6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+}
