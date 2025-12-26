@@ -1,87 +1,105 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css';
-import { Link, Navigate } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import "./App.css";
+import { useNavigate } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [user, setuser] = useState("");
+  const [pass, setpass] = useState("");
 
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [nameError, setNameError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [showPassword, setShowPassword] = useState('');
+  const [userblank, setuserblank] = useState(false);
+  const [passblank, setpassblank] = useState(false);
 
-  const Data = {
-    username: 'riti',
-    password: 'divine',
-  }
+  const [incorrectuser, setincorrectuser] = useState(false);
+  const [incorrectpass, setincorrectpass] = useState(false);
+
+  const [loginalert, setloginalert] = useState(false);
 
   const navi = useNavigate();
 
-  const login = () => {
+  const data = {
+    username: "riti",
+    password: "123",
+  };
 
-    if (name == "") {
-      setNameError('Field is requird');
+  const submit = () => {
+    
+    // username blank
+    if (user === "") {
+      setuserblank(true);
+      setincorrectuser(false);
+      setincorrectpass(false);
+      return;
     } else {
-      setNameError('')
+      setuserblank(false);
+    }
 
-    }
-    if (password == "") {
-      setPasswordError('Field is requird');
+    // wrong username
+    if (user !== data.username) {
+      setincorrectuser(true);
+      setincorrectpass(false);
+      return;
     } else {
-      setPasswordError('')
+      setincorrectuser(false);
     }
-    if (name == Data.username && password == Data.password) {
-      navi("/Dashboard")
+
+    // password blank
+    if (pass === "") {
+      setpassblank(true);
+      setincorrectpass(false);
+      return;
     } else {
-      alert('Invalid credentials!')
+      setpassblank(false);
+    }
+
+    // wrong password
+    if (pass !== data.password) {
+      setincorrectpass(true);
+      return;
+    } else {
+      setincorrectpass(false);
+    }
+
+    // successful login
+    if (user === data.username && pass === data.password) {
+      setloginalert(true);
+      navi("/Dashboard");
     }
   };
-  const forgot = () => {
-    setPassword('');
-  }
-  return (
-    <div className='main'>
-      <div className='main-2'>
-        <h1 className='header'>Employee Login</h1>
-        <div className='inner-data-1'>
-          <input
-            className="a"
-            type='text'
-            placeholder='Enter your name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}>
-          </input>
-          {nameError && <p className='error-1'>{nameError}</p>}
 
-        </div>
-        <div className='inner-data-2'>
-          <input
-            className="b"
-            type={showPassword ? 'text' : 'password'}
-            placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}>
-          </input>
-          {passwordError && <p className='error-2'>{passwordError}</p>}
-        </div>
-        <div className='inner-data-3'>
-          <input
-            type='checkbox'
-            className='radio'
-            onChange={(e) => setShowPassword(!showPassword)}>
-          </input>
-          <p className='c1'>Show Password</p>
-          <p className='c2'><a onClick={forgot}>Forgot Password</a></p>
-        </div>
-        <div className='inner-data-4'>
-          <button onClick={login}><Link to="/Dashboard">Login</Link></button>
-        </div>
+  return (
+    <div>
+      <h1 className="heading1">Employee Login</h1>
+
+      <div className="login">
+
+        {loginalert && <p className="LoginAlert">Successfully Login!</p>}
+
+        <input
+          className="input1"
+          type="text"
+          placeholder="Enter Username"
+          onChange={(e) => setuser(e.target.value)}
+        />
+        <br />
+
+        {userblank && <p className="input1Alert">Field is Required</p>}
+        {incorrectuser && <p className="input1Alert">Incorrect Username</p>}
+
+        <input
+          className="input2"
+          type="password"
+          placeholder="Enter Password"
+          onChange={(e) => setpass(e.target.value)}
+        />
+        <br />
+
+        {passblank && <p className="input2Alert">Field is Required</p>}
+        {incorrectpass && <p className="input2Alert">Incorrect Password</p>}
+
+        <button className="btn" onClick={submit}>SUBMIT</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default App;

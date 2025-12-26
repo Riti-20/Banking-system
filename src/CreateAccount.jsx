@@ -1,80 +1,56 @@
 import { useState } from "react";
-import "./createAccount.css";
- import { MainData } from "./Globaldata.jsx";
- import { useNavigate } from "react-router-dom"
+import "./CreateAccount.css";
+import { useNavigate } from "react-router-dom";
+import { data, addAccount } from "./GlobalData.jsx";
 
 const CreateAccount = () => {
-    const [input, setinput] = useState();
-    const [input2, setinput2] = useState();
-    const [input3, setinput3] = useState();
-    const [input4,setinput4] =useState();
-    const [val, setval] = useState()
-    const Navigate = useNavigate();
-    console.log(input, input2, input3, val,input4)
+  const [username, setname] = useState("");
+  const [userAge, setAge] = useState("");
+  const [userAccountNo, setAccountNo] = useState("");
+  const [userAccountType, setAccountType] = useState("");
+  const [userAmount, setAmount] = useState("");
 
-    const sub = () => {
-        let obj = {
-            Name: input,
-            AcNo: input2,
-            AllType: val,
-            InitialAmount: input3,
-            Age: input4
-        }
-        MainData.push(obj)
-        Navigate("/Dashboard")
-    }
+  const navigate = useNavigate("");
 
+  const Submit = () => {
+    let newuserdata = {
+      AccountNo: userAccountNo,
+      Name: username,
+      Age: userAge,
+      AccountType: userAccountType,
+      Balance: userAmount,
+    };
 
-    return (
-        <div className="relate">
-            <video className="video" autoPlay muted loop >
-                <source src="video.mp4"/>
-            </video>
-            <div className="main-box">
-                <div className="all-item">
-                    <div className="input-1">
-                        <label>Name</label>
-                        <input
-                            type="text" placeholder="Name"
-                            onChange={(e) => setinput(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-2">
-                        <label>AcNo</label>
-                        <input
-                            type="Number" placeholder="Acno."
-                            onChange={(e) => setinput2(e.target.value)}
-                        />
-                    </div>
-                    <div className="input-3">
-                        <label>Amount</label>
-                        <input
-                            type="number" placeholder="InitialAmount."
-                            onChange={(e) => setinput3(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <lable>Age</lable>
-                        <input 
-                        type="number" placeholder="Enter Age."
-                        onChange={(e) => setinput4(e.target.value)}
-                        />
-                    </div>
+    addAccount(newuserdata);
 
-                    <div className="slt">
-                        <select className=""
-                            onChange={(e) => setval(e.target.value)}>
-                            <option value="All">All</option>
-                            <option value="savingA/c" >savingAc</option>
-                            <option value="currentA/C">currentAc</option>
-                            <option value="salaryA/C">salaryAc</option>
-                        </select>
-                    </div>
+    navigate("/dashboard");
+  };
 
-                    <button onClick={sub}>Submit</button>
-                </div>
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="Form-wrapper">
+      <input type="text" placeholder="Enter Name" onChange={(e) => setname(e.target.value)} />
+      <br />
+
+      <input type="number" placeholder="Enter Age" onChange={(e) => setAge(e.target.value)} />
+      <br />
+
+      <input type="number" placeholder="Enter Account Number" onChange={(e) => setAccountNo(e.target.value)} />
+      <br />
+
+      <select onChange={(e) => setAccountType(e.target.value)}>
+        <option disabled>Account Type</option>
+        <option value="Salary">Salary Account</option>
+        <option value="Current">Current Account</option>
+        <option value="Saving">Saving Account</option>
+      </select>
+      <br />
+
+      <input type="number" placeholder="enter Amount" onChange={(e) => setAmount(e.target.value)} />
+      <br />
+
+      <button onClick={Submit}>Submit</button>
+    </div>
+  );
+};
+
 export default CreateAccount;
